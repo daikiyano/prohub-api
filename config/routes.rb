@@ -15,6 +15,9 @@ Rails.application.routes.draw do
         as :admin do
         # Define routes for Admin within this block.
       end
+      namespace :admin do
+        resources :sites
+      end
     end
   end
   get 'home/home'
