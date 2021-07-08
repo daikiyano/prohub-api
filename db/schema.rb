@@ -68,8 +68,10 @@ ActiveRecord::Schema.define(version: 2021_07_06_082026) do
     t.text "description"
     t.string "url"
     t.string "price"
+    t.bigint "admin_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_sites_on_admin_id"
   end
 
   create_table "tags", force: :cascade do |t|

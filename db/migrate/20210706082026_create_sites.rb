@@ -5,7 +5,7 @@ class CreateSites < ActiveRecord::Migration[6.0]
       t.text :description
       t.string :url
       t.string :price
-
+      t.references :admin
       t.timestamps
     end
   end
