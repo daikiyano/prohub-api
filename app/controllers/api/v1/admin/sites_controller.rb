@@ -3,12 +3,14 @@ class Api::V1::Admin::SitesController < ApplicationController
   before_action :authenticate_api_v1_admin!
   def index
     @sites = Site.all
-    render json: @sites,methods: [:image_url]
+    render json: @sites, methods: [:image_url]
   end
 
   def create
     @site = Site.new(site_params)
+    tag_list = JSON.parse(params[:tag][:tags])
     @site.admin_id = current_api_v1_admin.id
+    @site.tags_save(tag_list)
     if @site.save
       render json: @site, methods: [:image_url], status: :ok
     else
@@ -28,6 +30,11 @@ class Api::V1::Admin::SitesController < ApplicationController
   private
 
   def site_params
-    params.permit(:name, :description, :url, :price, :image)
+    params.require(:site).permit(:name, :description, :url, :price, :image)
   end
+
+  def tag_params
+    params.require(:tag).permit(:tags)
+  end
+
 end
