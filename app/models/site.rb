@@ -1,7 +1,7 @@
 class Site < ApplicationRecord
   include Rails.application.routes.url_helpers
 
-  has_many :site_tags
+  has_many :site_tags, dependent: :destroy
   has_many :tags, through: :site_tags
 
   validates :name, presence: true

@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  namespace :api do
+  namespace :api, format: "json" do
     namespace :v1 do
       # 一般ユーザー用
       # /api/v1/public/auth/sign_in
