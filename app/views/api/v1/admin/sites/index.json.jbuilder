@@ -1,4 +1,3 @@
-# json.sites do
   json.array!(@sites) do |site|
     json.extract! site, :id, :name
     json.image_url site.image_url
@@ -7,4 +6,3 @@
       json.name site_tag.tag.name
     end
   end
-# end
