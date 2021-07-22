@@ -31,6 +31,7 @@ gem 'devise_token_auth'
 gem 'jbuilder'
 
 gem "aws-sdk-s3", require: false
+gem 'twitter'
 
 
 group :development, :test do
