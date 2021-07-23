@@ -8,6 +8,7 @@ Rails.application.routes.draw do
           resources :site_comments
         end
         resources :tags
+        resources :articles
         mount_devise_token_auth_for "User", at: 'auth', controllers: {
           registrations: 'api/v1/public/auth/registrations'
          }
