@@ -3,7 +3,7 @@ class Api::V1::Public::TagsController < ApplicationController
   include ConnpassService
 
   def index
-    @tags = Tag.first(100)
+    @tags = Tag.all
     render json: @tags 
   end
 

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :site_comments
+  has_many :articles
 
   validates :username, presence: true
   validates :email, presence: true, uniqueness: true

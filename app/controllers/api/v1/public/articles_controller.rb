@@ -1,6 +1,7 @@
 class Api::V1::Public::ArticlesController < ApplicationController
-  before_action :authenticate_api_v1_public_user!
+  before_action :authenticate_api_v1_public_user!, except: :index
   def index
+    @articles = Article.all
   end
 
   def show
@@ -9,7 +10,7 @@ class Api::V1::Public::ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     tag_list = JSON.parse(params[:tag][:tags])
-    @article.user_id = current_api_v1_public.id
+    @article.user_id = current_api_v1_public_user.id
     @article.tags_save(tag_list)
     if @article.save
       redirect_to api_v1_public_articles_path
@@ -27,7 +28,7 @@ class Api::V1::Public::ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title,:body)
+    params.require(:article).permit(:title,:body,:thumbnail)
   end
 
   def tag_params
